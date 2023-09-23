@@ -1,0 +1,1 @@
+export type Epoch = { epoch : number };

@@ -1,4 +1,4 @@
-import request from 'supertest';
+import request, { Response } from 'supertest';
 import { app, server } from '../index';
 
 describe('/time endpoint', () => {
@@ -13,12 +13,12 @@ describe('/time endpoint', () => {
 
   it('should return a the right epoch time', async () => {
     const past = new Date();
-    const response = await request(app).get('/time');
+    const response : Response = await request(app).get('/time');
 
     const future = new Date();
     expect(response.body).toHaveProperty('epoch');
 
-    const { epoch } = response.body;
+    const { epoch }  = response.body;
 
     expect(epoch).toBeGreaterThanOrEqual(Math.round(past.getTime() / 1000));
     expect(epoch).toBeLessThanOrEqual(Math.round(future.getTime() / 1000));
