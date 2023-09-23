@@ -1,0 +1,23 @@
+{
+  "name": "connex-test",
+  "version": "1.0.0",
+  "main": "server/index.ts",
+  "scripts": {
+    "test": "cd server && npm run test",
+    "start-server": "cd server && npm run start"
+  },
+  "author": "ScottNC",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-prometheus-middleware": "^1.2.0",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/express-prometheus-middleware": "^1.2.1",
+    "@types/node": "^20.6.3",
+    "typescript": "^5.2.2"
+  },
+  "keywords": [],
+  "description": ""
+}
