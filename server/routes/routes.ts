@@ -9,7 +9,7 @@ export function setupRoutes(app: Express) {
 
   app.use((req, res, next) => {
     if (req.headers.authorization !== getHeader()) {
-      return res.status(403).json({ error: 'No credentials sent!' });
+      return res.status(403).json({ error: 'Token required' });
     }
     next();
   });
