@@ -6,11 +6,20 @@ export const EpochTime: React.FC = () => {
   const [epoch, setEpoch] = useState<Epoch | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/time", {
-      headers: {Authorization: getHeader()}
-    })
-      .then(response => response.json())
-      .then(data => setEpoch(data))
+
+    const fetchData = () => {
+      fetch("http://localhost:3000/time", {
+        headers: {Authorization: getHeader()}
+      })
+        .then(response => response.json())
+        .then(data => setEpoch(data));
+    }
+
+    fetchData();
+
+    const intervalId = setInterval(fetchData, 30000);
+
+    return () => clearInterval(intervalId);
   },[])
 
   if (epoch)
