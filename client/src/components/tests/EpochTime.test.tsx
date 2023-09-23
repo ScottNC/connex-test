@@ -1,4 +1,4 @@
-import { act, render } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { EpochTime } from '../EpochTime';
 global.fetch = require('jest-fetch-mock');
@@ -32,5 +32,27 @@ describe('TimeData', () => {
         "Authorization": "test-token",
       }
     });
+  });
+
+  it('The page should show the Epoch times', async () => {
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <EpochTime />
+        </MemoryRouter>
+      );
+    });
+
+    setTimeout(() => {
+      const epochTitle = screen.getByText(/Epoch Time/i);
+      const epochTime = screen.getByText(/1695493773/i);
+      const timeDiff = screen.getByText(/Time Difference/i);
+      const time = screen.getByTestId('time-diff');
+
+      expect(epochTitle).toBeInTheDocument();
+      expect(epochTime).toBeInTheDocument();
+      expect(timeDiff).toBeInTheDocument();
+      expect(time).toBeInTheDocument();
+    }, 2000);
   });
 });
