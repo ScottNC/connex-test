@@ -1,19 +1,27 @@
 import request, { Response } from 'supertest';
 import { app, server } from '../index';
+import { getHeader } from '../get_header';
+
+const header: string = getHeader();
 
 describe('/time endpoint', () => {
-  afterAll(() => {
-    server.close();
+  
+  afterAll(async () => {
+    try {
+      await server.close();
+    } catch (err) {
+      console.error('Error closing server:', err);
+    }
   });
 
   it('should return a success code', async () => {
-    const response = await request(app).get('/time');
+    const response = await request(app).get('/time').set('Authorization', header);
     expect(response.statusCode).toBe(200);
   });
 
   it('should return a the right epoch time', async () => {
     const past = new Date();
-    const response : Response = await request(app).get('/time');
+    const response : Response = await request(app).get('/time').set('Authorization', header);
 
     const future = new Date();
     expect(response.body).toHaveProperty('epoch');
