@@ -1,18 +1,13 @@
 import express, { Express } from 'express';
-import promMid from 'express-prometheus-middleware';
+import { setupRoutes } from './routes/routes';
 
 const app: Express = express();
 const port: number = 3000;
 
-app.use(
-  promMid(
-    {
-      metricsPath: '/metrics',
-      collectDefaultMetrics: true,
-    }
-  )
-);
+setupRoutes(app);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+export { app, server };
