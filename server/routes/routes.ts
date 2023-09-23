@@ -2,7 +2,7 @@ import { Express } from "express";
 import promMid from 'express-prometheus-middleware';
 import { epochTime } from "../services/epoch_time";
 import { Epoch } from "../../shared/types";
-import { getHeader } from "../get_header";
+import getHeader from "../get_header";
 
 export function setupRoutes(app: Express) {
   console.log('Creating API router...');

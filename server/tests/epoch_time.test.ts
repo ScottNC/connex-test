@@ -1,31 +1,31 @@
 import request, { Response } from 'supertest';
 import { app, server } from '../index';
-import { getHeader } from '../get_header';
+import getHeader from '../get_header';
 
 const header: string = getHeader();
 
 describe('/time endpoint', () => {
   
-  afterAll(async () => {
+  afterAll(() => {
     try {
-      await server.close();
+      server.close();
     } catch (err) {
       console.error('Error closing server:', err);
     }
   });
 
   it('should return a success code', async () => {
-    const response = await request(app).get('/time').set('Authorization', header);
+    const response: Response = await request(app).get('/time').set('Authorization', header);
     expect(response.statusCode).toBe(200);
   });
 
   it('should return an error without a header', async () => {
-    const response = await request(app).get('/time');
+    const response: Response = await request(app).get('/time');
     expect(response.statusCode).toBe(403);
   });
 
   it('should return an error with wrong header', async () => {
-    const response = await request(app).get('/time').set('Authorization', header + 'abc');
+    const response: Response = await request(app).get('/time').set('Authorization', header + 'abc');
     expect(response.statusCode).toBe(403);
   });
 

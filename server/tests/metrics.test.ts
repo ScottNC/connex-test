@@ -1,6 +1,6 @@
 import request, { Response } from 'supertest';
 import { app, server } from '../index';
-import { getHeader } from '../get_header';
+import getHeader from '../get_header';
 
 const header: string = getHeader();
 
@@ -35,33 +35,33 @@ const allMetrics : string[] = [
 ]
 
 describe('metrics endpoint', () => {
-  afterAll(async () => {
+  afterAll(() => {
     try {
-      await server.close();
+      server.close();
     } catch (err) {
       console.error('Error closing server:', err);
     }
   });
 
   it('should return an error without a header', async () => {
-    const response = await request(app).get('/metrics');
+    const response: Response = await request(app).get('/metrics');
     expect(response.statusCode).toBe(403);
   });
 
   it('should return an error with wrong header', async () => {
-    const response = await request(app).get('/metrics').set('Authorization', header + 'abc');
+    const response: Response = await request(app).get('/metrics').set('Authorization', header + 'abc');
     expect(response.statusCode).toBe(403);
   });
 
   it('should return text with the correct header', async () => {
-    const response = await request(app).get('/metrics').set('Authorization', header);
+    const response: Response = await request(app).get('/metrics').set('Authorization', header);
     expect(response.statusCode).toBe(200);
     expect(response.type).toBe('text/plain');
   });
 
   it('should return the prometheus API metrics when after /time is called', async () => {
     await request(app).get('/time').set('Authorization', header);
-    const response = await request(app).get('/metrics').set('Authorization', header);
+    const response: Response = await request(app).get('/metrics').set('Authorization', header);
     const { text } = response;
     expect(text).toContain('http_requests_total{route="/time",method="GET",status="2XX"} 1'); 
     
