@@ -19,6 +19,16 @@ describe('/time endpoint', () => {
     expect(response.statusCode).toBe(200);
   });
 
+  it('should return an error without a header', async () => {
+    const response = await request(app).get('/time');
+    expect(response.statusCode).toBe(403);
+  });
+
+  it('should return an error with wrong header', async () => {
+    const response = await request(app).get('/time').set('Authorization', header + 'abc');
+    expect(response.statusCode).toBe(403);
+  });
+
   it('should return a the right epoch time', async () => {
     const past = new Date();
     const response : Response = await request(app).get('/time').set('Authorization', header);
