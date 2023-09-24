@@ -1,14 +1,15 @@
 :root {
-  --dark: #1A192A;
-  --grey: #15153C;
-	--light: #F9F6F6;
-  --navy: #2A3C77;
-	--blue: #7EADBD;
+  --dark: #222831;
+  --grey: #393E46;
+  --orange: #D65A31;
+	--light: #EEEEEE;
+  --blue: #22267B;
+  --green: #17B794;
 }
 
 body {
   font-family: Rockwell, Courier Bold, Courier, Georgia, Times, Times New Roman, serif;
-	background: var(--blue);
+	background: var(--dark);
 	margin: 0;
   color: var(--light);
 }
@@ -18,7 +19,6 @@ body {
   justify-content: center;
   padding-left: 5em;
   padding-right: 5em;
-  background: var(--navy);
 }
 
 .header__card--title {
@@ -35,15 +35,19 @@ body {
 .text--block {
   width: 50%;
   position: fixed;
-  padding-top: 20px;
-  max-height: 100%;
+  padding: 20px;
+  height: 200%;
   overflow: auto;
 }
 
 .left {
   left: 0;
+  background-color: var(--blue);
+  color: var(--green);  
 }
 
 .right {
   right: 0;
+  background-color: var(--grey);
+  color: var(--orange);
 }
