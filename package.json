@@ -4,11 +4,14 @@
   "main": "server/index.ts",
   "scripts": {
     "test": "cd server && npm run test",
-    "start-server": "cd server && npm run start"
+    "start-server": "cd server && npm run dev",
+    "start-client": "cd client && npm run dev",
+    "start": "concurrently -n client,server -c cyan,magenta \"npm run start-client\" \"npm run start-server\""
   },
   "author": "ScottNC",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^8.2.1",
     "cors": "^2.8.5",
     "create-react-app": "^5.0.1",
     "dotenv": "^16.3.1",
