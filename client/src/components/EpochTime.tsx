@@ -40,7 +40,7 @@ export const EpochTime: React.FC = () => {
 
   if (epoch && clientTime)
     return (
-      <div className="text text--block">
+      <div className="text--block left">
         <h2>
           Epoch Time
         </h2>
@@ -57,7 +57,7 @@ export const EpochTime: React.FC = () => {
     );
   else
     return (
-      <div className="text text--block">
+      <div className="text--block left">
         <p className="text__paragraph">
           Loading...
         </p>

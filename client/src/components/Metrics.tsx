@@ -23,7 +23,7 @@ export const Metrics: React.FC = () => {
 
   if (metrics) 
     return(
-      <div className="text text--block text__metrics">
+      <div className="text--block right">
         <h2>
           Metrics
         </h2>
@@ -34,7 +34,7 @@ export const Metrics: React.FC = () => {
     );
   else
     return(
-      <div className="text text--block">
+      <div className="text--block right">
         <p className="text__paragraph">
           Loading...
         </p>
