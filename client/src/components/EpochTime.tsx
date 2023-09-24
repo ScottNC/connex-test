@@ -41,13 +41,13 @@ export const EpochTime: React.FC = () => {
   if (epoch && clientTime)
     return (
       <div className="text--block left">
-        <h2>
+        <h2 className='header__card'>
           Epoch Time
         </h2>
         <p className="text__paragraph">
           {epoch.epoch}
         </p>
-        <h2>
+        <h2 className='header__card'>
           Time Difference
         </h2>
         <p className="text__paragraph" data-testid="time-diff">
